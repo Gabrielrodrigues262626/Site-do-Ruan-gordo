@@ -3,33 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projeto Interativo Avançado</title>
-    <!-- Importação de fonte moderna (Inter) via Google Fonts -->
+    <title>Oração de Evento de Personagem - Ruan</title>
+    <!-- Fonte no estilo Genshin -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="background-overlay"></div>
+    <div class="gacha-container">
+        <!-- Cabeçalho -->
+        <header class="banner-header">
+            <div class="wish-type">Oração de Evento de Personagem</div>
+            <h1 class="character-name">RUAN</h1>
+            <p class="character-title">✦ O Tecelão do Destino ✦</p>
+        </header>
 
-    <main class="card">
-        <div class="badge">Efeitos Avançados</div>
-        <h1 class="title">Design Moderno</h1>
-        <p class="description">
-            Sua interface agora conta com tipografia otimizada, gradientes dinâmicos, efeitos de iluminação e animações fluidas.
-        </p>
-
-        <div class="interactive-area">
-            <button id="meuBotao" class="btn">
-                <span>Clique para Interagir</span>
-            </button>
-            <p id="mensagemSucesso" class="status-message hidden">
-                ✨ Efeito ativado com sucesso!
-            </p>
+        <!-- Ilustração do Personagem -->
+        <div class="character-art-container">
+            <div class="glow-effect"></div>
+            <!-- Substitua o src pela imagem do Ruan se tiver -->
+            <div class="character-card">
+                <div class="stars">★★★★★</div>
+                <div class="character-element">ANEMO</div>
+                <div class="character-avatar-placeholder">
+                    <span>RUAN</span>
+                </div>
+            </div>
         </div>
-    </main>
+
+        <!-- Painel de Detalhes -->
+        <div class="banner-info">
+            <div class="rate-up">Taxa de Obtenção Aumentada!</div>
+            <p class="description">Aproveite a chance aumentada para obter o personagem de 5★ "Ruan"!</p>
+        </div>
+
+        <!-- Botões de Gacha (Wish) -->
+        <footer class="wish-actions">
+            <button id="btnWish1" class="wish-btn single">
+                <span class="wish-text">Compor 1 Oração</span>
+                <span class="wish-cost">✦ 160</span>
+            </button>
+            <button id="btnWish10" class="wish-btn multi">
+                <span class="wish-text">Compor 10 Orações</span>
+                <span class="wish-cost">✦ 1600</span>
+            </button>
+        </footer>
+    </div>
+
+    <!-- Modal de Resultado do Gacha -->
+    <div id="gachaModal" class="modal hidden">
+        <div class="modal-content">
+            <div id="wishAnimation" class="wish-animation"></div>
+            <div id="wishResult" class="wish-result hidden">
+                <h2 id="resultStars" class="result-stars">★★★★★</h2>
+                <h3 id="resultName" class="result-name">Ruan</h3>
+                <button id="btnCloseModal" class="btn-confirm">Confirmar</button>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
