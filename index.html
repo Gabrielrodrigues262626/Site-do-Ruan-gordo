@@ -3,15 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Projeto</title>
+    <title>Projeto Interativo Avançado</title>
+    <!-- Importação de fonte moderna (Inter) via Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <main class="container">
-        <h1>Olá, Mundo!</h1>
-        <p>Este é o modelo base do seu projeto.</p>
-        <button id="meuBotao">Clique aqui</button>
+    <div class="background-overlay"></div>
+
+    <main class="card">
+        <div class="badge">Efeitos Avançados</div>
+        <h1 class="title">Design Moderno</h1>
+        <p class="description">
+            Sua interface agora conta com tipografia otimizada, gradientes dinâmicos, efeitos de iluminação e animações fluidas.
+        </p>
+
+        <div class="interactive-area">
+            <button id="meuBotao" class="btn">
+                <span>Clique para Interagir</span>
+            </button>
+            <p id="mensagemSucesso" class="status-message hidden">
+                ✨ Efeito ativado com sucesso!
+            </p>
+        </div>
     </main>
 
     <script src="script.js"></script>
