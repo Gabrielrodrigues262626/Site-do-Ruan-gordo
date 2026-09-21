@@ -6,15 +6,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const result = document.getElementById('wishResult');
     const resultName = document.getElementById('resultName');
     const resultStars = document.getElementById('resultStars');
+    const resultQuote = document.getElementById('resultQuote');
     const btnCloseModal = document.getElementById('btnCloseModal');
+
+    const fraseRuan = '"Ruan, você é meu amigo legal. Você é meu amigo grandão, mas gente boa! Nosso amigo grandão de todo mundo da sala!" 🤝😊';
 
     // Tabela de Personagens (Gacha Pool)
     const pool = [
-        { name: 'Ruan', stars: '★★★★★', is5Star: true },
-        { name: 'Espada de Ferro', stars: '★★★', is5Star: false },
-        { name: 'Lança Caçadora', stars: '★★★', is5Star: false },
-        { name: 'Guia de Magia', stars: '★★★', is5Star: false },
-        { name: 'Sombra de 4 Estrelas', stars: '★★★★', is5Star: false }
+        { name: 'RUAN 👑', stars: '⭐⭐⭐⭐⭐', quote: fraseRuan },
+        { name: 'Espada de Ferro 🗡️', stars: '⭐⭐⭐', quote: 'Uma espada comum de treino.' },
+        { name: 'Lança Caçadora 🏹', stars: '⭐⭐⭐', quote: 'Uma lança simples de caça.' },
+        { name: 'Guia de Magia 📖', stars: '⭐⭐⭐', quote: 'Um livro antigo de feitiços.' }
     ];
 
     function sortearGacha(multiplo = false) {
@@ -27,15 +29,16 @@ document.addEventListener('DOMContentLoaded', () => {
             result.classList.remove('hidden');
 
             if (multiplo) {
-                resultStars.textContent = '★★★★★';
-                resultName.textContent = 'RUAN + 9 Itens!';
+                resultStars.textContent = '⭐⭐⭐⭐⭐';
+                resultName.textContent = 'RUAN 👑';
+                resultQuote.textContent = fraseRuan;
             } else {
-                // 50% de chance de vir o Ruan 5 estrelas no teste
                 const sorteado = Math.random() > 0.3 ? pool[0] : pool[Math.floor(Math.random() * pool.length)];
                 resultStars.textContent = sorteado.stars;
                 resultName.textContent = sorteado.name;
+                resultQuote.textContent = sorteado.quote;
             }
-        }, 1500); // 1.5s de animação
+        }, 1500);
     }
 
     btnWish1.addEventListener('click', () => sortearGacha(false));
