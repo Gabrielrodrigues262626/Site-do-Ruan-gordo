@@ -1,60 +1,47 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const botao = document.getElementById('meuBotao');
-    const mensagem = document.getElementById('mensagemSucesso');
+    const btnWish1 = document.getElementById('btnWish1');
+    const btnWish10 = document.getElementById('btnWish10');
+    const modal = document.getElementById('gachaModal');
+    const animation = document.getElementById('wishAnimation');
+    const result = document.getElementById('wishResult');
+    const resultName = document.getElementById('resultName');
+    const resultStars = document.getElementById('resultStars');
+    const btnCloseModal = document.getElementById('btnCloseModal');
 
-    botao.addEventListener('click', (event) => {
-        // Exibe a mensagem suavemente
-        mensagem.classList.remove('hidden');
+    // Tabela de Personagens (Gacha Pool)
+    const pool = [
+        { name: 'Ruan', stars: '★★★★★', is5Star: true },
+        { name: 'Espada de Ferro', stars: '★★★', is5Star: false },
+        { name: 'Lança Caçadora', stars: '★★★', is5Star: false },
+        { name: 'Guia de Magia', stars: '★★★', is5Star: false },
+        { name: 'Sombra de 4 Estrelas', stars: '★★★★', is5Star: false }
+    ];
 
-        // Cria o efeito de partícula/onda (Ripple) no clique
-        criarEfeitoOnda(event);
+    function sortearGacha(multiplo = false) {
+        modal.classList.remove('hidden');
+        animation.style.display = 'block';
+        result.classList.add('hidden');
 
-        // Oculta a mensagem após 3 segundos
         setTimeout(() => {
-            mensagem.classList.add('hidden');
-        }, 3000);
-    });
+            animation.style.display = 'none';
+            result.classList.remove('hidden');
 
-    function criarEfeitoOnda(event) {
-        const btn = event.currentTarget;
-        const circle = document.createElement('span');
-        const diameter = Math.max(btn.clientWidth, btn.clientHeight);
-        const radius = diameter / 2;
-
-        const rect = btn.getBoundingClientRect();
-        circle.style.width = circle.style.height = `${diameter}px`;
-        circle.style.left = `${event.clientX - rect.left - radius}px`;
-        circle.style.top = `${event.clientY - rect.top - radius}px`;
-        
-        // Estilização dinâmica da onda
-        circle.style.position = 'absolute';
-        circle.style.borderRadius = '50%';
-        circle.style.backgroundColor = 'rgba(255, 255, 255, 0.35)';
-        circle.style.transform = 'scale(0)';
-        circle.style.animation = 'ripple 600ms linear';
-        circle.style.pointerEvents = 'none';
-
-        // Garante que o estilo da animação exista no DOM
-        if (!document.getElementById('ripple-style')) {
-            const style = document.createElement('style');
-            style.id = 'ripple-style';
-            style.innerHTML = `
-                @keyframes ripple {
-                    to {
-                        transform: scale(4);
-                        opacity: 0;
-                    }
-                }
-            `;
-            document.head.appendChild(style);
-        }
-
-        const rippleExistente = btn.querySelector('.ripple');
-        if (rippleExistente) {
-            rippleExistente.remove();
-        }
-
-        circle.classList.add('ripple');
-        btn.appendChild(circle);
+            if (multiplo) {
+                resultStars.textContent = '★★★★★';
+                resultName.textContent = 'RUAN + 9 Itens!';
+            } else {
+                // 50% de chance de vir o Ruan 5 estrelas no teste
+                const sorteado = Math.random() > 0.3 ? pool[0] : pool[Math.floor(Math.random() * pool.length)];
+                resultStars.textContent = sorteado.stars;
+                resultName.textContent = sorteado.name;
+            }
+        }, 1500); // 1.5s de animação
     }
+
+    btnWish1.addEventListener('click', () => sortearGacha(false));
+    btnWish10.addEventListener('click', () => sortearGacha(true));
+
+    btnCloseModal.addEventListener('click', () => {
+        modal.classList.add('hidden');
+    });
 });
