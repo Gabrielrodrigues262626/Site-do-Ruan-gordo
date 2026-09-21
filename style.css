@@ -1,149 +1,265 @@
-/* Custom Properties (Variáveis CSS) */
 :root {
-    --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
-    --bg-color: #0f172a;
-    --card-bg: rgba(30, 41, 59, 0.7);
-    --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
-    --border-color: rgba(255, 255, 255, 0.1);
-    --shadow-glow: 0 10px 30px -10px rgba(168, 85, 247, 0.5);
-    --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+    --genshin-gold: #f3d082;
+    --genshin-gold-glow: #ffe599;
+    --genshin-purple: #a855f7;
+    --genshin-dark: #090c15;
+    --genshin-card-bg: rgba(20, 26, 40, 0.85);
+    --font-title: 'Cinzel', serif;
+    --font-body: 'Montserrat', sans-serif;
 }
 
-/* Reset Global */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    user-select: none;
 }
 
 body {
-    font-family: var(--font-main);
-    background-color: var(--bg-color);
-    color: var(--text-primary);
+    font-family: var(--font-body);
+    background: radial-gradient(circle at center, #1e2942 0%, #090c15 100%);
+    color: #fff;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+}
+
+/* Container do Banner estilo Genshin */
+.gacha-container {
+    width: 100vw;
+    height: 100vh;
+    max-width: 1280px;
+    max-height: 720px;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px 60px;
+    background: radial-gradient(circle at 70% 40%, rgba(99, 102, 241, 0.15) 0%, transparent 60%);
 }
 
-/* Fundo com Iluminação Abstrata */
-.background-overlay {
-    position: absolute;
-    width: 350px;
-    height: 350px;
-    background: var(--primary-gradient);
-    filter: blur(120px);
-    border-radius: 50%;
-    opacity: 0.4;
-    z-index: 0;
-    animation: pulse 8s ease-in-out infinite alternate;
+/* Cabeçalho */
+.banner-header {
+    z-index: 2;
 }
 
-/* Card Principal Glassmorphism */
-.card {
-    position: relative;
-    z-index: 1;
-    background: var(--card-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--border-color);
-    padding: 40px;
-    border-radius: 24px;
-    max-width: 440px;
-    width: 90%;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), var(--shadow-glow);
-}
-
-.badge {
-    display: inline-block;
-    padding: 6px 14px;
-    font-size: 0.75rem;
-    font-weight: 600;
+.wish-type {
+    font-size: 0.9rem;
+    color: var(--genshin-gold);
+    letter-spacing: 2px;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    color: #a855f7;
-    margin-bottom: 20px;
+    font-weight: 600;
 }
 
-.title {
-    font-size: 2.25rem;
-    font-weight: 800;
-    line-height: 1.2;
-    background: var(--primary-gradient);
+.character-name {
+    font-family: var(--font-title);
+    font-size: 4rem;
+    font-weight: 900;
+    letter-spacing: 4px;
+    background: linear-gradient(180deg, #ffffff 30%, var(--genshin-gold) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 12px;
+    text-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.character-title {
+    font-size: 1.1rem;
+    color: #cbd5e1;
+    letter-spacing: 3px;
+}
+
+/* Arte Central */
+.character-art-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.glow-effect {
+    position: absolute;
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle, rgba(243, 208, 130, 0.3) 0%, transparent 70%);
+    animation: pulseGlow 4s infinite alternate;
+}
+
+.character-card {
+    width: 280px;
+    height: 380px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(0,0,0,0.4));
+    border: 2px solid var(--genshin-gold);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    box-shadow: 0 0 30px rgba(243, 208, 130, 0.2);
+}
+
+.stars {
+    color: var(--genshin-gold);
+    font-size: 1.5rem;
+    letter-spacing: 4px;
+}
+
+.character-element {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    background: rgba(52, 211, 153, 0.2);
+    color: #34d399;
+    padding: 4px 12px;
+    border-radius: 12px;
+    border: 1px solid #34d399;
+}
+
+.character-avatar-placeholder {
+    font-family: var(--font-title);
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--genshin-gold);
+    text-shadow: 0 0 15px var(--genshin-gold);
+}
+
+/* Rodapé e Botões */
+.banner-info {
+    z-index: 2;
+    max-width: 400px;
+}
+
+.rate-up {
+    color: var(--genshin-gold);
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 5px;
 }
 
 .description {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 30px;
-    font-weight: 300;
+    font-size: 0.85rem;
+    color: #94a3b8;
 }
 
-/* Botão Moderno com Microinterações */
-.btn {
-    position: relative;
-    width: 100%;
-    padding: 16px 28px;
-    font-size: 1rem;
-    font-weight: 600;
-    font-family: inherit;
-    color: #ffffff;
-    background: var(--primary-gradient);
-    border: none;
-    border-radius: 12px;
+.wish-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+    z-index: 2;
+}
+
+.wish-btn {
+    background: #e2e8f0;
+    border: 2px solid var(--genshin-gold);
+    border-radius: 30px;
+    padding: 12px 28px;
     cursor: pointer;
-    overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: var(--shadow-glow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
-.btn:hover {
-    transform: scale(1.02);
-    filter: brightness(1.1);
+.wish-btn:hover {
+    transform: scale(1.05);
+    background: #ffffff;
+    box-shadow: 0 0 20px var(--genshin-gold-glow);
 }
 
-.btn:active {
-    transform: scale(0.98);
+.wish-btn:active {
+    transform: scale(0.95);
 }
 
-.status-message {
-    margin-top: 20px;
-    font-size: 0.9rem;
-    color: #34d399;
+.wish-text {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.wish-cost {
+    font-size: 0.8rem;
+    color: #475569;
     font-weight: 600;
-    opacity: 1;
-    transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-.status-message.hidden {
+/* Modal do Gacha */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.modal.hidden {
     opacity: 0;
-    transform: translateY(10px);
     pointer-events: none;
 }
 
-/* Animações Keyframes */
-@keyframes pulse {
-    0% {
-        transform: scale(1) translate(0, 0);
-    }
-    100% {
-        transform: scale(1.3) translate(20px, -20px);
-    }
+.modal-content {
+    text-align: center;
+}
+
+.wish-animation {
+    width: 100px;
+    height: 100px;
+    border: 4px solid transparent;
+    border-top-color: var(--genshin-gold);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+.wish-result.hidden {
+    display: none;
+}
+
+.result-stars {
+    color: var(--genshin-gold);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px var(--genshin-gold);
+}
+
+.result-name {
+    font-family: var(--font-title);
+    font-size: 3rem;
+    margin-bottom: 30px;
+}
+
+.btn-confirm {
+    background: var(--genshin-gold);
+    color: #000;
+    border: none;
+    padding: 10px 30px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+@keyframes pulseGlow {
+    0% { transform: scale(1); opacity: 0.3; }
+    100% { transform: scale(1.2); opacity: 0.6; }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
